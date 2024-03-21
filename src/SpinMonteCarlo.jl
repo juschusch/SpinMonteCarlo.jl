@@ -1,6 +1,6 @@
 __precompile__()
 
-module SpinMonteCarlo
+module SpinMonteCarloMod
 
 using Random
 using Printf
