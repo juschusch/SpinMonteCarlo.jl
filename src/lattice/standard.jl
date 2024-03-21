@@ -98,6 +98,118 @@ stdunitcells["NNN simple2d"] = P(:name => "NNN simple2d",
                                           :source=>P(:id=>1, :offset=>[0,0]),
                                           :target=>P(:id=>1, :offset=>[-1,1]),),
                                        ])
+stdunitcells["three_sublattices simple2d"] = P(:name => "three_sublattices simple2d",
+                              :dimension => 2,
+                              :sites => [
+                                        # r-sublattice
+                                        P(
+                                            :id => 1,
+                                            :sitetype => 1,
+                                            :coord => [0.0, 0.0]
+                                        ),
+                                        # w-sublattice
+                                        P(
+                                            :id => 2,
+                                            :sitetype => 2,
+                                            :coord => [0.0, 0.0]
+                                        ),
+                                        # c-sublattice
+                                        P(
+                                            :id => 3,
+                                            :sitetype => 3,
+                                            :coord => [0.0, 0.0]
+                                        )
+                                        ],
+                              :bonds => [
+                                        # intralayer couplings
+                                        # ferromagnetic r-sublattice
+                                        P(
+                                            :bondtype => 1,
+                                            :source => Dict(:id => 1, :offset => [0,0]),
+                                            :target => Dict(:id => 1, :offset => [0,1])
+                                        ),
+                                        P(
+                                            :bondtype => 1,
+                                            :source => Dict(:id => 1, :offset => [0,0]),
+                                            :target => Dict(:id => 1, :offset => [1,0])
+                                        ),
+                                        # ferromagnetic w-sublattice
+                                        P(
+                                            :bondtype => 1,
+                                            :source => Dict(:id => 2, :offset => [0,0]),
+                                            :target => Dict(:id => 2, :offset => [0,1])
+                                        ),
+                                        P(
+                                            :bondtype => 1,
+                                            :source => Dict(:id => 2, :offset => [0,0]),
+                                            :target => Dict(:id => 2, :offset => [1,0])
+                                        ),
+                                        # antiferromagnetic c-sublattice
+                                        P(
+                                            :bondtype => 2,
+                                            :source => Dict(:id => 3, :offset => [0,0]),
+                                            :target => Dict(:id => 3, :offset => [0,1])
+                                        ),
+                                        P(
+                                            :bondtype => 2,
+                                            :source => Dict(:id => 3, :offset => [0,0]),
+                                            :target => Dict(:id => 3, :offset => [1,0])
+                                        ),
+                                        # interlayer same-cell couplings
+                                        # rw: negative
+                                        P(
+                                            :bondtype => 3,
+                                            :source => Dict(:id => 1, :offset => [0,0]),
+                                            :target => Dict(:id => 2, :offset => [0,0])
+                                        ),
+                                        # wc: positive
+                                        P(
+                                            :bondtype => 4,
+                                            :source => Dict(:id => 2, :offset => [0,0]),
+                                            :target => Dict(:id => 3, :offset => [0,0])
+                                        ),
+                                        # cr: positive
+                                        P(
+                                            :bondtype => 4,
+                                            :source => Dict(:id => 3, :offset => [0,0]),
+                                            :target => Dict(:id => 1, :offset => [0,0])
+                                        ),
+                                        # interlayer nn-coupling
+                                        # rw: negative
+                                        P(
+                                            :bondtype => 5,
+                                            :source => Dict(:id => 1, :offset => [0,0]),
+                                            :target => Dict(:id => 2, :offset => [0,1])
+                                        ),
+                                        P(
+                                            :bondtype => 5,
+                                            :source => Dict(:id => 1, :offset => [0,0]),
+                                            :target => Dict(:id => 2, :offset => [1,0])
+                                        ),
+                                        # wc: positive
+                                        P(
+                                            :bondtype => 6,
+                                            :source => Dict(:id => 2, :offset => [0,0]),
+                                            :target => Dict(:id => 3, :offset => [0,1])
+                                        ),
+                                        P(
+                                            :bondtype => 6,
+                                            :source => Dict(:id => 2, :offset => [0,0]),
+                                            :target => Dict(:id => 3, :offset => [1,0])
+                                        ),
+                                        # cr: positive
+                                        P(
+                                            :bondtype => 6,
+                                            :source => Dict(:id => 3, :offset => [0,0]),
+                                            :target => Dict(:id => 1, :offset => [0,1])
+                                        ),
+                                        P(
+                                            :bondtype => 6,
+                                            :source => Dict(:id => 3, :offset => [0,0]),
+                                            :target => Dict(:id => 1, :offset => [1,0])
+                                        ),
+                                        ]
+                                        )                                     
 stdunitcells["triangular cell"] = P(:name => "triangular cell",
                                     :dimension => 2,
                                     :sites => [P(:id=>1,
@@ -181,6 +293,13 @@ stdlattices["square lattice"] = P(:name => "square lattice",
                                   :parameters => [],
                                   :periodic => [true, true],
                                  )
+stdlattices["three square sublattices"] = P(:name => "three square sublattices",
+                                            :dimension => 2,
+                                            :bravais => "orthorhombic2d",
+                                            :unitcell => "three_sublattices simple2d",
+                                            :parameters => [],
+                                            :periodic => [false, false],
+                                           )                                 
 stdlattices["J1J2 square lattice"] = P(:name => "J1J2 square lattice",
                                        :dimension => 2,
                                        :bravais => "orthorhombic2d",
